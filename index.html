@@ -45,6 +45,9 @@
         <!-- Card Inside (Hidden initially) -->
         <div class="card-inside hidden" id="card-inside">
             
+            <!-- Relationship Timer -->
+            <div class="relationship-timer" id="rel-timer"></div>
+
             <div class="pages-container" id="pages-container">
                 
                 <!-- Page 1 -->
@@ -101,10 +104,16 @@
 
             <!-- Audio Player -->
             <div class="audio-player">
+                <img src="https://i.scdn.co/image/ab6761610000e5ebba9fc6e204c35fb0a0b6391d" alt="Giveon" class="artist-logo">
                 <button class="play-btn" id="play-btn">
                     <i data-lucide="play" fill="white" color="white"></i>
                 </button>
-                <span class="song-title">GIVEONCUT</span>
+                <div class="player-info">
+                    <span class="song-title">Giveon - If I Ain't Got You</span>
+                    <div class="progress-bar-container" id="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

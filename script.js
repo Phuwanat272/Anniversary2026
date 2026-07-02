@@ -326,3 +326,47 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+// --- Relationship Timer Logic ---
+const relTimer = document.getElementById('rel-timer');
+const startDate = new Date('2025-07-24T00:00:00'); // 1 year before 2026-07-24
+
+function updateRelationshipTimer() {
+    if (!relTimer) return;
+    const now = new Date();
+    const diff = now - startDate;
+    
+    if (diff < 0) {
+        relTimer.innerHTML = 'Waiting for our journey to begin...';
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    relTimer.innerHTML = `อยู่ด้วยกันมาแล้ว: ${days} วัน ${hours} ชม. ${minutes} นาที ${seconds} วินาที 💖`;
+}
+if (relTimer) {
+    setInterval(updateRelationshipTimer, 1000);
+    updateRelationshipTimer();
+}
+
+// --- Audio Progress Bar Logic ---
+const progressBar = document.getElementById('progress-bar');
+const progressContainer = document.getElementById('progress-container');
+
+if (bgMusicInside && progressBar && progressContainer) {
+    bgMusicInside.addEventListener('timeupdate', () => {
+        if (!isNaN(bgMusicInside.duration)) {
+            const percent = (bgMusicInside.currentTime / bgMusicInside.duration) * 100;
+            progressBar.style.width = percent + '%';
+        }
+    });
+
+    progressContainer.addEventListener('click', (e) => {
+        const rect = progressContainer.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        bgMusicInside.currentTime = pos * bgMusicInside.duration;
+    });
+}
