@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary!</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Import Fonts: Great Vibes for cursive, Quicksand for clean text, Prompt for Thai -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Prompt:wght@300;400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Import Lucide Icons for Audio Player -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Floating Hearts Background -->
+    <div class="bg-hearts" id="bg-hearts"></div>
+
+    <div class="card-container">
+        <!-- Card Cover -->
+        <div class="card-cover" id="card-cover">
+            <h1 class="title-cursive">To my love patty</h1>
+            
+            <!-- Lock Message & Countdown -->
+            <div id="lock-screen" class="lock-screen">
+                <p class="subtitle">Locked until <br> July 24, 2026 - 00:01</p>
+                <div class="countdown" id="countdown">
+                    <!-- Countdown populated by JS -->
+                </div>
+            </div>
+
+            <button class="open-btn locked" id="open-btn">
+                <i data-lucide="lock" class="btn-icon"></i> <span id="btn-text">Locked</span>
+            </button>
+            
+            <button class="spam-heart-btn" id="spam-heart-btn" title="Send Love!">
+                <i data-lucide="heart" fill="var(--primary)" color="var(--primary)"></i>
+            </button>
+        </div>
+
+        <!-- 3-Second Countdown Screen -->
+        <div class="transition-countdown hidden" id="transition-countdown">
+            <h2 id="transition-number">3</h2>
+        </div>
+
+        <!-- Card Inside (Hidden initially) -->
+        <div class="card-inside hidden" id="card-inside">
+            
+            <div class="pages-container" id="pages-container">
+                
+                <!-- Page 1 -->
+                <div class="page active" id="page-1">
+                    <div class="polaroid">
+                        <div class="photo-frame single">
+                            <img src="images/pic0.jpg" alt="Photo">
+                        </div>
+                    </div>
+                    <div class="message-box">
+                        <p>สุขสันต์วันครบรอบนะครับอ้วน Happy Anniversary ขอบคุณที่อยู่ด้วยกันมาตลอดนะ ขอบคุณมากที่ยังรักกันมาตลอดตั้งแต่วันแรกถึงวันนี้ ❤️🥰✨</p>
+                    </div>
+                </div>
+
+                <!-- Page 2 -->
+                <div class="page" id="page-2">
+                    <div class="polaroid">
+                        <div class="photo-frame collage-3">
+                            <img src="images/pic3.JPG" alt="Photo">
+                            <img src="images/pic4.JPG" alt="Photo">
+                            <img src="images/pic5.jpg" alt="Photo">
+                        </div>
+                    </div>
+                    <div class="message-box">
+                        <p>ดีใจมากที่ได้อยู่ด้วยกันจนถึงตอนนี้... อยากให้เป็นเด็กอ้วนของเค้าไปตลอด รักเธอที่สุดไม่อยากให้เราต้องแยกกันไปไหน ขอให้เธอรักเค้ามากๆ แสดงออกมากๆ ให้เรารักกันแบบนี้ไปตลอด🥺💕</p>
+                    </div>
+                </div>
+
+                <!-- Page 3 -->
+                <div class="page" id="page-3">
+                    <div class="polaroid">
+                        <div class="photo-frame collage-2">
+                            <img src="images/pic2.jpg" alt="Photo">
+                            <img src="images/pic7.JPG" alt="Photo">
+                        </div>
+                    </div>
+                    <div class="message-box">
+                        <p>ถึงจะมีช่วงเวลาที่ทะเลาะกันบ้าง แต่อยากให้เรากลับมาดีกันและรักกันมากๆ อยู่ด้วยกันไปตลอดนะ ถ่ายรูปด้วยกันเยอะๆ ได้เจอกันบ่อยๆ ได้เที่ยวด้วยกัน ได้อยู๋ด้วยกันเร็วๆ อยู่กับเค้าไปนานๆนะอ้วน และอยากจะบอกว่า Love u and miss u so much mak mak na ppang patty. ❤️ 💖✨</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Page Navigation -->
+            <div class="page-nav">
+                <button class="nav-btn" id="prev-btn" onclick="changePage(-1)"><i data-lucide="chevron-left"></i></button>
+                <div class="page-indicators">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <button class="nav-btn" id="next-btn" onclick="changePage(1)"><i data-lucide="chevron-right"></i></button>
+            </div>
+
+            <!-- Audio Player -->
+            <div class="audio-player">
+                <button class="play-btn" id="play-btn">
+                    <i data-lucide="play" fill="white" color="white"></i>
+                </button>
+                <span class="song-title">GIVEONCUT</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music - Lock Screen -->
+    <audio id="bg-music-lock" loop>
+        <source src="SBG.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Background Music - Inside Card -->
+    <audio id="bg-music-inside" loop>
+        <source src="GIVEONCUT.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Secret bypass button -->
+    <div id="secret-btn" class="secret-btn"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
