@@ -16,8 +16,8 @@
     <div class="bg-hearts" id="bg-hearts"></div>
 
     <div class="card-container">
-        <!-- Card Cover -->
-        <div class="card-cover" id="card-cover">
+        <!-- Card Cover (Hidden by default to bypass lock) -->
+        <div class="card-cover" id="card-cover" style="display: none;">
             <h1 class="title-cursive">To my love patty</h1>
             
             <!-- Lock Message & Countdown -->
@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <button class="open-btn locked" id="open-btn">
+            <button class="open-btn locked" id="open-btn" onclick="if(typeof forceOpenCard !== 'undefined') forceOpenCard();">
                 <i data-lucide="lock" class="btn-icon"></i> <span id="btn-text">Locked</span>
             </button>
             
@@ -42,8 +42,8 @@
             <h2 id="transition-number">3</h2>
         </div>
 
-        <!-- Card Inside (Hidden initially) -->
-        <div class="card-inside hidden" id="card-inside">
+        <!-- Card Inside (Visible by default) -->
+        <div class="card-inside" id="card-inside">
             
             <!-- Relationship Timer -->
             <div class="relationship-timer" id="rel-timer"></div>
@@ -131,6 +131,29 @@
     <!-- Secret bypass button -->
     <div id="secret-btn" class="secret-btn"></div>
 
-    <script src="script.js"></script>
+    <script>
+        window.forceOpenCard = function() {
+            var cover = document.getElementById('card-cover');
+            var inside = document.getElementById('card-inside');
+            var music = document.getElementById('bg-music-inside');
+            var lockMusic = document.getElementById('bg-music-lock');
+            
+            if (cover) cover.classList.add('open-anim');
+            if (lockMusic) { lockMusic.pause(); lockMusic.currentTime = 0; }
+            if (music) { music.play().catch(e => console.log('Audio play failed', e)); }
+            
+            setTimeout(function() {
+                if (cover) cover.style.display = 'none';
+                if (inside) inside.classList.remove('hidden');
+                
+                var playBtn = document.getElementById('play-btn');
+                if (playBtn) {
+                    playBtn.innerHTML = '<i data-lucide="pause" fill="white" color="white"></i>';
+                    playBtn.classList.add('playing');
+                }
+            }, 600);
+        };
+    </script>
+    <script src="script_fixed.js"></script>
 </body>
 </html>
